@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import './App.css';
 
-const HERO_NAME = 'MARCUS REED';
-const EMAIL = 'marcus@reed.sh';
+const HERO_NAME = 'Tibet Y';
+const EMAIL = 'tibety@protonmail.com';
 const GITHUB_URL = 'https://github.com';
 const PGP_URL = '#';
 
@@ -14,49 +14,49 @@ const THEME_VARS = {
 const PROJECTS = [
   {
     id: '01',
-    name: 'PACKETWEAVE',
-    blurb: 'real-time traffic visualizer w/ deep-packet inspection',
-    tags: ['Go', 'eBPF', 'WebGL'],
+    name: 'Goodwood Website',
+    blurb: 'Public-facing website for Goodwood Masonic Lodge No. 159.',
+    tags: ['React Router', 'TypeScript', 'Supabase', 'MUI'],
     detail:
-      'Taps the kernel with eBPF probes and streams flows into a force-directed WebGL graph. Lets you watch a network breathe — and spot the one host that shouldn’t be talking to that one port.',
-    ascii: '  host ──▶ flow ──▶ graph\n   │        │        │\n  eBPF    decode    WebGL\n   └─ 1.2M pkts/s ◀──┘',
+      'A bilingual, fully-themed public site for a 160-year-old Masonic lodge — history, officers, events, and a members-only admin portal. Backed by Supabase auth + Postgres, a TanStack Query data layer, and a Claude-powered chatbot that answers visitor questions about the lodge. Server-rendered with React Router v7 and prerendered for speed on Netlify.',
+    ascii: '  visitor ──▶ React Router ──▶ Supabase\n     │            │              │\n   i18n         portal         Postgres\n     └──── Claude chatbot ◀──── auth',
   },
-  {
-    id: '02',
-    name: 'NULLROUTE',
-    blurb: 'C2 beacon detection from passive DNS + JA3',
-    tags: ['Python', 'Suricata', 'ML'],
-    detail:
-      'A heuristics + light-ML engine that flags command-and-control beaconing by jitter analysis and TLS fingerprint clustering. Ships as a Suricata sidecar. Caught three live samples in testing.',
-    ascii: '  pcap ▶ features ▶ score\n  ▒▒▒░░  jitter  ░░▒▒▒\n  JA3 ─┐\n  pDNS ┴▶ cluster ▶ alert',
-  },
-  {
-    id: '03',
-    name: 'CRT-9',
-    blurb: 'self-hosted CTF framework — challenges as containers',
-    tags: ['Rust', 'Docker', 'WASM'],
-    detail:
-      'Every challenge is a signed container; the scoreboard is a single Rust binary. Built it to run a 200-player event off one cheap VPS without it falling over. It didn’t.',
-    ascii: '  [chal]──sign──▶[registry]\n     │                │\n  spawn◀──── scoreboard(rs)\n     └──▶ 200 players ok',
-  },
-  {
-    id: '04',
-    name: 'GHOSTKEY',
-    blurb: 'air-gapped password vault on a $4 microcontroller',
-    tags: ['Rust', 'embedded', 'crypto'],
-    detail:
-      'A hardware password manager experiment: secrets never leave the chip, entry is a rotary dial, and it emulates a USB keyboard to type them. Mostly an excuse to write no_std Rust on bare metal.',
-    ascii: '  dial ▶ derive ▶ HID type\n   ╭─────────────╮\n   │  no_std rs  │ air-gap\n   ╰─────────────╯',
-  },
-  {
-    id: '05',
-    name: 'SIGINT-LAB',
-    blurb: 'SDR signal classifier — what is that thing transmitting?',
-    tags: ['Python', 'GNURadio', 'SDR'],
-    detail:
-      'Point an RTL-SDR at the spectrum and it labels modulation schemes in near-real-time. Current obsession: telling apart the dozen proprietary protocols my neighbourhood’s smart meters use.',
-    ascii: '  RF ▶ FFT ▶ CNN ▶ label\n  ∿∿∿∿  ▁▃▅▇▅▃▁  FSK?\n  433.92 MHz · −62 dBm',
-  },
+  // {
+  //   id: '02',
+  //   name: 'NULLROUTE',
+  //   blurb: 'C2 beacon detection from passive DNS + JA3',
+  //   tags: ['Python', 'Suricata', 'ML'],
+  //   detail:
+  //     'A heuristics + light-ML engine that flags command-and-control beaconing by jitter analysis and TLS fingerprint clustering. Ships as a Suricata sidecar. Caught three live samples in testing.',
+  //   ascii: '  pcap ▶ features ▶ score\n  ▒▒▒░░  jitter  ░░▒▒▒\n  JA3 ─┐\n  pDNS ┴▶ cluster ▶ alert',
+  // },
+  // {
+  //   id: '03',
+  //   name: 'CRT-9',
+  //   blurb: 'self-hosted CTF framework — challenges as containers',
+  //   tags: ['Rust', 'Docker', 'WASM'],
+  //   detail:
+  //     'Every challenge is a signed container; the scoreboard is a single Rust binary. Built it to run a 200-player event off one cheap VPS without it falling over. It didn’t.',
+  //   ascii: '  [chal]──sign──▶[registry]\n     │                │\n  spawn◀──── scoreboard(rs)\n     └──▶ 200 players ok',
+  // },
+  // {
+  //   id: '04',
+  //   name: 'GHOSTKEY',
+  //   blurb: 'air-gapped password vault on a $4 microcontroller',
+  //   tags: ['Rust', 'embedded', 'crypto'],
+  //   detail:
+  //     'A hardware password manager experiment: secrets never leave the chip, entry is a rotary dial, and it emulates a USB keyboard to type them. Mostly an excuse to write no_std Rust on bare metal.',
+  //   ascii: '  dial ▶ derive ▶ HID type\n   ╭─────────────╮\n   │  no_std rs  │ air-gap\n   ╰─────────────╯',
+  // },
+  // {
+  //   id: '05',
+  //   name: 'SIGINT-LAB',
+  //   blurb: 'SDR signal classifier — what is that thing transmitting?',
+  //   tags: ['Python', 'GNURadio', 'SDR'],
+  //   detail:
+  //     'Point an RTL-SDR at the spectrum and it labels modulation schemes in near-real-time. Current obsession: telling apart the dozen proprietary protocols my neighbourhood’s smart meters use.',
+  //   ascii: '  RF ▶ FFT ▶ CNN ▶ label\n  ∿∿∿∿  ▁▃▅▇▅▃▁  FSK?\n  433.92 MHz · −62 dBm',
+  // },
 ];
 
 const MENU_W = 216;
@@ -210,7 +210,7 @@ function App() {
 
   const copyEmail = () => {
     try {
-      navigator.clipboard.writeText(EMAIL).catch(() => {});
+      navigator.clipboard.writeText(EMAIL).catch(() => { });
     } catch {
       /* clipboard unavailable */
     }
